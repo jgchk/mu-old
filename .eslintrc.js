@@ -23,6 +23,13 @@ module.exports = {
   ],
   rules: {
     'unicorn/prevent-abbreviations': 'off',
+    'unicorn/filename-case': 'off',
+    'import/order': ['error', {
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true
+      }
+    }]
   },
   settings: {
     react: {
