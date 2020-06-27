@@ -3,7 +3,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
   },
   plugins: ['@typescript-eslint', 'functional'],
   extends: [
@@ -43,5 +43,13 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      typescript: {
+        directory: [
+          './tsconfig.eslint.json',
+          './packages/*/tsconfig.json'
+        ]
+      }
+    }
   },
 }
