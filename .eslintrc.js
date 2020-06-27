@@ -5,7 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'functional'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -17,6 +17,8 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
+    'plugin:functional/external-recommended',
+    'plugin:functional/recommended',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
@@ -29,6 +31,9 @@ module.exports = {
         order: 'asc',
         caseInsensitive: true
       }
+    }],
+    'functional/functional-parameters': ['error', {
+      enforceParameterCount: false
     }]
   },
   settings: {
