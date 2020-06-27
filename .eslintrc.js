@@ -18,7 +18,7 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
     'plugin:functional/external-recommended',
-    'plugin:functional/recommended',
+    'plugin:functional/lite',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
@@ -35,9 +35,7 @@ module.exports = {
     'functional/functional-parameters': ['error', {
       enforceParameterCount: false
     }],
-    'functional/no-conditional-statement': ['error', {
-      allowReturningBranches: 'ifExhaustive'
-    }]
+    'functional/no-loop-statement': 'off'
   },
   settings: {
     react: {
