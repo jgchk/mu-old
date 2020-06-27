@@ -34,6 +34,9 @@ module.exports = {
     }],
     'functional/functional-parameters': ['error', {
       enforceParameterCount: false
+    }],
+    'functional/no-conditional-statement': ['error', {
+      allowReturningBranches: 'ifExhaustive'
     }]
   },
   settings: {

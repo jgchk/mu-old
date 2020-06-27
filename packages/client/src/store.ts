@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import libraryReducer from './modules/library'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  library: libraryReducer,
+})
 
 const store = configureStore({
   reducer: rootReducer,
