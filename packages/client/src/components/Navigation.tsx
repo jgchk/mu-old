@@ -9,6 +9,11 @@ import {
   NavbarBrand,
   NavbarToggler,
   Collapse,
+  Form,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  Button,
 } from 'reactstrap'
 
 const Navigation: FC = () => {
@@ -17,22 +22,35 @@ const Navigation: FC = () => {
   const toggle = () => setOpen(!isOpen)
 
   return (
-    <Navbar color="light" light expand="md">
+    <Navbar color='light' light expand='md'>
       <NavbarBrand>mu</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
-        <Nav navbar>
+        <Nav navbar className='mr-auto'>
           <NavItem>
-            <NavLink tag={Link} to="/">
-              Home
+            <NavLink tag={Link} to='/'>
+              home
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to="/library">
-              Library
+            <NavLink tag={Link} to='/library'>
+              library
             </NavLink>
           </NavItem>
         </Nav>
+        <Form>
+          <InputGroup>
+            <Input
+              type='search'
+              name='search'
+              id='search'
+              placeholder='search'
+            />
+            <InputGroupAddon addonType='append'>
+              <Button type='submit'>Search</Button>
+            </InputGroupAddon>
+          </InputGroup>
+        </Form>
       </Collapse>
     </Navbar>
   )
