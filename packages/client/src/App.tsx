@@ -12,10 +12,10 @@ const App: FC = () => (
     <Router>
       <Navigation />
       <Switch>
-        <Route path="/library">
+        <Route path='/library'>
           <Library />
         </Route>
-        <Route path="/">
+        <Route path='/'>
           <Home />
         </Route>
       </Switch>
