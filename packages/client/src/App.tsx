@@ -5,6 +5,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import Library from './pages/Library'
+import Upload from './pages/Upload'
 import store from './store'
 
 const App: FC = () => (
@@ -12,6 +13,9 @@ const App: FC = () => (
     <Router>
       <Navigation />
       <Switch>
+        <Route path='/upload'>
+          <Upload />
+        </Route>
         <Route path='/library'>
           <Library />
         </Route>

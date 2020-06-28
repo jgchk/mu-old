@@ -38,6 +38,11 @@ const Navigation: FC = () => {
               library
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to='/upload'>
+              upload
+            </NavLink>
+          </NavItem>
         </Nav>
         <Form>
           <InputGroup>

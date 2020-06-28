@@ -1,7 +1,12 @@
 import path from 'path'
 import Conf from 'conf'
+import expandTilde from 'expand-tilde'
 
-const config = new Conf({
+type Config = {
+  readonly library: string
+}
+
+const config = new Conf<Config>({
   schema: {
     library: {
       type: 'string',
@@ -10,4 +15,6 @@ const config = new Conf({
   },
 })
 
-export default config
+export default {
+  library: expandTilde(config.get('library')),
+}

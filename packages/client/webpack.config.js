@@ -34,5 +34,9 @@ module.exports = {
     contentBase: buildDir,
     compress: true,
     port: 9000,
+    proxy: [{
+      context: ['/upload'],
+      target: 'http://localhost:3000'
+    }]
   },
 }
