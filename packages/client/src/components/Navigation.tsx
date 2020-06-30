@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { FC, useState } from 'react'
-import { Search } from 'react-feather'
-import { Link } from 'react-router-dom'
+import { Search, Loader } from 'react-feather'
+import { useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import {
   Navbar,
   Nav,
@@ -16,11 +17,36 @@ import {
   InputGroupAddon,
   Button,
 } from 'reactstrap'
+import styled, { keyframes } from 'styled-components'
+import { RootState } from '../modules'
+import { fetchSearch } from '../modules/search/actions'
+import { useAppDispatch } from '../store'
+
+const spinKeyframes = keyframes`
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+`
+
+const Spinner = styled.div`
+  animation: ${spinKeyframes} 2s infinite;
+`
 
 const Navigation: FC = () => {
   const [isOpen, setOpen] = useState(false)
-
   const toggle = () => setOpen(!isOpen)
+
+  const dispatch = useAppDispatch()
+  const [searchQuery, setSearchQuery] = useState('')
+  const history = useHistory()
+  const onSearch = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await dispatch(fetchSearch(searchQuery))
+    history.push('/search')
+  }
+
+  const isSearchLoading = useSelector<RootState, boolean>(
+    (state) => state.search.isFetching
+  )
 
   return (
     <Navbar color='light' light expand='md'>
@@ -44,17 +70,28 @@ const Navigation: FC = () => {
             </NavLink>
           </NavItem>
         </Nav>
-        <Form>
+        <Form onSubmit={(e) => onSearch(e)}>
           <InputGroup>
             <Input
               type='search'
               name='search'
               id='search'
               placeholder='search'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <InputGroupAddon addonType='append'>
-              <Button type='submit'>
-                <Search />
+              <Button
+                type='submit'
+                disabled={isSearchLoading || searchQuery.length === 0}
+              >
+                {isSearchLoading ? (
+                  <Spinner>
+                    <Loader />
+                  </Spinner>
+                ) : (
+                  <Search />
+                )}
               </Button>
             </InputGroupAddon>
           </InputGroup>

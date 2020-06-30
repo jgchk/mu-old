@@ -35,7 +35,7 @@ module.exports = {
     compress: true,
     port: 9000,
     proxy: [{
-      context: ['/upload'],
+      context: ['/upload', '/search'],
       target: 'http://localhost:3000'
     }]
   },
