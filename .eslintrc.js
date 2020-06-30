@@ -30,6 +30,7 @@ module.exports = {
         caseInsensitive: true
       }
     }],
+    'react/prop-types': 'off' // Typescript does this for us
   },
   settings: {
     react: {
