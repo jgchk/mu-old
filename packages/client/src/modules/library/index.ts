@@ -4,4 +4,6 @@ import * as libraryTypes from './types'
 
 export { libraryActions, libraryTypes }
 
+export type LibraryState = ReturnType<typeof reducer>
+
 export default reducer

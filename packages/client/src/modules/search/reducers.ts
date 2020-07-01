@@ -1,6 +1,12 @@
+import { SearchResult } from '@mu/api'
 import { createReducer } from '@reduxjs/toolkit'
 import { requestSearch, receiveSearch, failedSearch } from './actions'
-import { SearchState } from './interfaces'
+
+interface SearchState {
+  isFetching: boolean
+  lastUpdated: number
+  results: SearchResult[]
+}
 
 const initialState: SearchState = {
   isFetching: false,
