@@ -1,10 +1,10 @@
+import { SearchResult } from '@mu/api'
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import ky from 'ky'
 import { RootState } from '..'
 import { AppDispatch } from '../../store'
 import { getErrorMessage } from '../../utils/error'
 import { withPayloadType } from '../../utils/redux'
-import { SearchResult } from './interfaces'
 import {
   REQUEST_SEARCH,
   RECEIVE_SEARCH,
