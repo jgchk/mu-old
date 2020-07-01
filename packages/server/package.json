@@ -22,7 +22,8 @@
     "koa-static": "^5.0.0",
     "monk": "^7.3.0",
     "music-metadata": "^6.4.0",
-    "runtypes": "^4.3.0"
+    "runtypes": "^4.3.0",
+    "@mu/api": "*"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.32",

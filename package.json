@@ -9,6 +9,8 @@
     "dev:client": "cd packages/client && npm run dev",
     "dev:server": "cd packages/server && npm run dev"
   },
+  "private": true,
+  "workspaces": ["packages/*"],
   "keywords": [],
   "author": "",
   "license": "ISC",

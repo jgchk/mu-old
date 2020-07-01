@@ -1,5 +1,5 @@
+import { SearchResult } from '@mu/api'
 import got from 'got/dist/source'
-import { SearchResult } from '../api/search'
 import getClientId from './client-id'
 import { SearchPager } from './types'
 

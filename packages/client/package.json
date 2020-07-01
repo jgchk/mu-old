@@ -14,16 +14,21 @@
     "@reduxjs/toolkit": "^1.4.0",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
     "ky": "^0.20.0",
     "nanoid": "^3.1.10",
+    "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.1",
     "react-feather": "^2.0.8",
+    "react-is": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "reactstrap": "^8.5.1",
-    "styled-components": "^5.1.1"
+    "redux": "^4.0.5",
+    "styled-components": "^5.1.1",
+    "@mu/client": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
