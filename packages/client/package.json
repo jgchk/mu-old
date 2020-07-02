@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mu/client": "*",
     "@reduxjs/toolkit": "^1.4.0",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
@@ -27,8 +28,8 @@
     "react-router-dom": "^5.2.0",
     "reactstrap": "^8.5.1",
     "redux": "^4.0.5",
-    "styled-components": "^5.1.1",
-    "@mu/client": "*"
+    "redux-persist": "^6.0.0",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
