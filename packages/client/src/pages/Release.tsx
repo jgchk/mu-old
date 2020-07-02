@@ -58,9 +58,9 @@ const Release: FC = () => {
           </div>
         </Col>
         <Col sm={8}>
-          <h3>{release.title}</h3>
-          <h5>{release.artist}</h5>
-          <ListGroup className='mt-3'>
+          <h4 className='font-weight-bold'>{release.title}</h4>
+          <h5 className='text-muted'>{release.artist}</h5>
+          <ListGroup className='mt-4'>
             {release.tracks.map((track) => (
               <ListGroupItem key={track.id}>
                 <Track track={track} />
