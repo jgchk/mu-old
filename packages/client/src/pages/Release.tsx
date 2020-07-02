@@ -11,7 +11,6 @@ import {
   Row,
   Col,
 } from 'reactstrap'
-import styled from 'styled-components'
 import Loader from '../components/Loader'
 import { RootState } from '../modules'
 import Track from './Track'

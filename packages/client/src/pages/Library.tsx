@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FC } from 'react'
-import { Card, CardImg, CardTitle, CardFooter, Container } from 'reactstrap'
+import { Card, CardImg, CardFooter, Container } from 'reactstrap'
 
 const Library: FC = () => (
   <Container className='py-3'>

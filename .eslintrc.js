@@ -22,6 +22,7 @@ module.exports = {
     'prettier/react',
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/filename-case': 'off',
     'import/order': ['error', {
