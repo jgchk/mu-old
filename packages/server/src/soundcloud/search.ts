@@ -17,10 +17,7 @@ export async function search(query: string): Promise<SearchResult[]> {
       artist: item.user.username,
       coverUrl: item.artwork_url?.replace('large', 't500x500') ?? undefined,
       source: 'soundcloud',
-      id: `${item.kind}/${item.id}`,
-      kind: (() => {
-        if (item.kind === 'playlist') return 'album'
-        if (item.kind === 'track') return 'track'
-      })(),
+      id: `${item.kind}s/${item.id}`,
+      numTracks: item.track_count,
     }))
 }

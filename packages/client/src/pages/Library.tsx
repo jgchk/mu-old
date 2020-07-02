@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { FC } from 'react'
-import { Card, CardImg, CardTitle, CardFooter } from 'reactstrap'
+import { Card, CardImg, CardTitle, CardFooter, Container } from 'reactstrap'
 
 const Library: FC = () => (
-  <div className='container d-flex py-3'>
+  <Container className='py-3'>
     <Card style={{ width: 250 }}>
       <CardImg
         top
@@ -11,7 +11,7 @@ const Library: FC = () => (
       />
       <CardFooter>Pink Siifu - Bag Talk</CardFooter>
     </Card>
-  </div>
+  </Container>
 )
 
 export default Library

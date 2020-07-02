@@ -1,9 +1,11 @@
 import path from 'path'
 import Router from '@koa/router'
+import { ReleaseRequest } from '@mu/api'
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import serve from 'koa-static'
 import { Record, String } from 'runtypes'
+import { release } from './soundcloud/release'
 import { search } from './soundcloud/search'
 
 const app = new Koa()
@@ -37,6 +39,11 @@ const SearchRequest = Record({
 router.get('/search', async (ctx) => {
   const { query } = SearchRequest.check(ctx.query)
   ctx.body = await search(query)
+})
+
+router.get('/release', async (ctx) => {
+  const { source, id } = ReleaseRequest.check(ctx.query)
+  ctx.body = await release(id)
 })
 
 app.use(router.routes()).use(router.allowedMethods())

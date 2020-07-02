@@ -1,4 +1,4 @@
-import { SearchResult } from '@mu/api'
+import { SearchResult, SearchRequest, SearchResponse } from '@mu/api'
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import ky from 'ky'
 import { RootState } from '..'
@@ -14,12 +14,12 @@ import {
 
 export const requestSearch = createAction(
   REQUEST_SEARCH,
-  withPayloadType<string>()
+  withPayloadType<SearchRequest>()
 )
 
 export const receiveSearch = createAction(
   RECEIVE_SEARCH,
-  withPayloadType<SearchResult[]>()
+  withPayloadType<SearchResponse>()
 )
 
 export const failedSearch = createAction(
@@ -29,16 +29,16 @@ export const failedSearch = createAction(
 
 export const fetchSearch = createAsyncThunk<
   void,
-  string,
+  SearchRequest,
   { dispatch: AppDispatch; state: RootState }
->(FETCH_SEARCH, async (query: string, { dispatch, getState }) => {
+>(FETCH_SEARCH, async (request: SearchRequest, { dispatch, getState }) => {
   if (getState().search.isFetching) return
 
-  dispatch(requestSearch(query))
+  dispatch(requestSearch(request))
 
   try {
     const results = await ky
-      .get('/search', { searchParams: { query } })
+      .get('/search', { searchParams: request })
       .json<SearchResult[]>()
     dispatch(receiveSearch(results))
   } catch (error) {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FC, useState } from 'react'
-import { Search, Loader } from 'react-feather'
+import { Search } from 'react-feather'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import {
@@ -17,19 +17,10 @@ import {
   InputGroupAddon,
   Button,
 } from 'reactstrap'
-import styled, { keyframes } from 'styled-components'
 import { RootState } from '../modules'
 import { fetchSearch } from '../modules/search/actions'
 import { useAppDispatch } from '../store'
-
-const spinKeyframes = keyframes`
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
-`
-
-const Spinner = styled.div`
-  animation: ${spinKeyframes} 2s infinite;
-`
+import Loader from './Loader'
 
 const Navigation: FC = () => {
   const [isOpen, setOpen] = useState(false)
@@ -40,7 +31,7 @@ const Navigation: FC = () => {
   const history = useHistory()
   const onSearch = async (e: React.FormEvent) => {
     e.preventDefault()
-    await dispatch(fetchSearch(searchQuery))
+    await dispatch(fetchSearch({ query: searchQuery }))
     history.push('/search')
   }
 
@@ -85,13 +76,7 @@ const Navigation: FC = () => {
                 type='submit'
                 disabled={isSearchLoading || searchQuery.length === 0}
               >
-                {isSearchLoading ? (
-                  <Spinner>
-                    <Loader />
-                  </Spinner>
-                ) : (
-                  <Search />
-                )}
+                {isSearchLoading ? <Loader /> : <Search />}
               </Button>
             </InputGroupAddon>
           </InputGroup>

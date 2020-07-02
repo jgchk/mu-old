@@ -1,25 +1,26 @@
-import { SearchResult } from '@mu/api'
+import { Release } from '@mu/api'
 import { createReducer } from '@reduxjs/toolkit'
-import { requestSearch, receiveSearch, failedSearch } from './actions'
+import { failedSearch } from '../search/actions'
+import { requestRelease, receiveRelease } from './actions'
 
 interface State {
   isFetching: boolean
-  results: SearchResult[]
+  release?: Release
 }
 
 const initialState: State = {
   isFetching: false,
-  results: [],
+  release: undefined,
 }
 
 const reducer = createReducer(initialState, (builder) =>
   builder
-    .addCase(requestSearch, (state) => {
+    .addCase(requestRelease, (state) => {
       state.isFetching = true
     })
-    .addCase(receiveSearch, (state, action) => {
+    .addCase(receiveRelease, (state, action) => {
       state.isFetching = false
-      state.results = action.payload
+      state.release = action.payload
     })
     .addCase(failedSearch, (state) => {
       state.isFetching = false

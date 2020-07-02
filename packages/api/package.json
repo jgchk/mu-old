@@ -1,5 +1,10 @@
 {
   "name": "@mu/api",
   "version": "0.1.0",
-  "files": ["*.ts"]
+  "files": [
+    "*.ts"
+  ],
+  "dependencies": {
+    "runtypes": "^4.3.0"
+  }
 }
