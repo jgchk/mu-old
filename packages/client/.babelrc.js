@@ -5,6 +5,8 @@ module.exports = {
             corejs: { version: 3, proposals: true }
         }],
         '@babel/preset-typescript',
-        '@babel/preset-react'
-    ]
+        '@babel/preset-react',
+        '@emotion/babel-preset-css-prop'
+    ],
+    plugins: ['emotion']
 }

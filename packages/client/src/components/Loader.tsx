@@ -1,21 +1,17 @@
+import { keyframes } from '@emotion/core'
 import { FC } from 'react'
 import * as React from 'react'
-import { Loader as LoaderIcon } from 'react-feather'
-import styled, { keyframes } from 'styled-components'
+import { FiLoader as LoaderIcon } from 'react-icons/fi'
 
 const spinKeyframes = keyframes`
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 `
 
-const Spinner = styled.div`
-  animation: ${spinKeyframes} 2s infinite;
-`
-
 const Loader: FC = () => (
-  <Spinner>
+  <div css={{ animation: `${spinKeyframes} 2s infinite` }}>
     <LoaderIcon />
-  </Spinner>
+  </div>
 )
 
 export default Loader
