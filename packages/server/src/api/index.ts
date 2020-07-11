@@ -8,6 +8,7 @@ import LocalCover from './entities/cover-local'
 import RemoteCover from './entities/cover-remote'
 import Release from './entities/release'
 import Track from './entities/track'
+import LocalTrackSource from './entities/track-source-local'
 import RemoteTrackSource from './entities/track-source-remote'
 import ArtistResolver from './resolvers/artist-resolver'
 import ReleaseResolver from './resolvers/release-resolver'
@@ -25,6 +26,7 @@ const createApolloServer = async (): Promise<ApolloServer> => {
       Release,
       Track,
       RemoteTrackSource,
+      LocalTrackSource,
       RemoteCover,
       LocalCover,
     ],

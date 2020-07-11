@@ -4,8 +4,10 @@ import { InjectRepository } from 'typeorm-typedi-extensions'
 import Artist from '../entities/artist'
 import Release from '../entities/release'
 import Track from '../entities/track'
+import LocalTrackSource from '../entities/track-source-local'
 import RemoteTrackSource from '../entities/track-source-remote'
 import TrackInput from './types/track-input'
+import LocalTrackSourceInput from './types/track-source-local-input'
 import RemoteTrackSourceInput from './types/track-source-remote-input'
 
 @Resolver(Track)
@@ -18,7 +20,9 @@ class TrackResolver {
     @InjectRepository(Artist)
     private readonly artistRepository: Repository<Artist>,
     @InjectRepository(RemoteTrackSource)
-    private readonly remoteTrackSourceRepository: Repository<RemoteTrackSource>
+    private readonly remoteTrackSourceRepository: Repository<RemoteTrackSource>,
+    @InjectRepository(LocalTrackSource)
+    private readonly localTrackSourceRepository: Repository<LocalTrackSource>
   ) {}
 
   @Query(() => Track)
@@ -54,7 +58,7 @@ class TrackResolver {
 
   @Mutation(() => Track)
   async addRemoteTrackSource(
-    @Arg('source', () => RemoteTrackSourceInput)
+    @Arg('source')
     sourceInput: RemoteTrackSourceInput
   ): Promise<Track> {
     const track = await this.trackRepository.findOneOrFail(
@@ -64,6 +68,21 @@ class TrackResolver {
 
     const sources = await track.remoteSources
     sources.push(this.remoteTrackSourceRepository.create({ ...sourceInput }))
+
+    return this.trackRepository.save(track)
+  }
+
+  @Mutation(() => Track)
+  async addLocalTrackSource(
+    @Arg('source') sourceInput: LocalTrackSourceInput
+  ): Promise<Track> {
+    const track = await this.trackRepository.findOneOrFail(
+      sourceInput.trackId,
+      { relations: ['localSources'] }
+    )
+
+    const sources = await track.localSources
+    sources.push(this.localTrackSourceRepository.create({ ...sourceInput }))
 
     return this.trackRepository.save(track)
   }

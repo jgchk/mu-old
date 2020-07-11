@@ -11,6 +11,7 @@ import {
 import { Lazy } from '../utils'
 import Artist from './artist'
 import Release from './release'
+import LocalTrackSource from './track-source-local'
 import RemoteTrackSource from './track-source-remote'
 
 @Entity()
@@ -43,6 +44,13 @@ class Track {
     cascade: true,
   })
   remoteSources: Lazy<RemoteTrackSource[]>
+
+  @Field(() => [LocalTrackSource])
+  @OneToMany(() => LocalTrackSource, (source) => source.track, {
+    lazy: true,
+    cascade: true,
+  })
+  localSources: Lazy<LocalTrackSource[]>
 }
 
 export default Track
