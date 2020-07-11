@@ -4,7 +4,7 @@ import { InjectRepository } from 'typeorm-typedi-extensions'
 import Artist from '../entities/artist'
 import Release from '../entities/release'
 import Track from '../entities/track'
-import RemoteTrackSource from '../entities/track-source/track-source-remote'
+import RemoteTrackSource from '../entities/track-source-remote'
 import TrackInput from './types/track-input'
 import RemoteTrackSourceInput from './types/track-source-input/track-source-remote-input'
 

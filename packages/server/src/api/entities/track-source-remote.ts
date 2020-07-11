@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID } from 'type-graphql'
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Lazy } from '../../utils'
-import Track from '../track'
+import { Lazy } from '../utils'
+import Track from './track'
 
 @Entity()
 @ObjectType()

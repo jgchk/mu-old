@@ -11,7 +11,7 @@ import {
 import { Lazy } from '../utils'
 import Artist from './artist'
 import Release from './release'
-import RemoteTrackSource from './track-source/track-source-remote'
+import RemoteTrackSource from './track-source-remote'
 
 @Entity()
 @Index(['release', 'num'], { unique: true })
