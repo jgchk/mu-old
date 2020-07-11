@@ -12,18 +12,27 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^9.0.1",
+    "@mu/api": "*",
+    "apollo-server-koa": "^2.15.1",
     "bluebird": "^3.7.2",
+    "class-validator": "^0.12.2",
     "conf": "^6.2.4",
     "dotenv": "^8.2.0",
     "expand-tilde": "^2.0.2",
     "got": "^11.3.0",
+    "graphql": "^15.3.0",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-static": "^5.0.0",
     "monk": "^7.3.0",
     "music-metadata": "^6.4.0",
+    "reflect-metadata": "^0.1.13",
     "runtypes": "^4.3.0",
-    "@mu/api": "*"
+    "sqlite3": "^5.0.0",
+    "type-graphql": "^1.0.0-rc.3",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.25",
+    "typeorm-typedi-extensions": "^0.2.3"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.32",

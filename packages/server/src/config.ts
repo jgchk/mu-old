@@ -2,8 +2,9 @@ import path from 'path'
 import Conf from 'conf'
 import expandTilde from 'expand-tilde'
 
-type Config = {
-  readonly library: string
+interface Config {
+  library: string
+  database: string
 }
 
 const config = new Conf<Config>({
@@ -12,9 +13,14 @@ const config = new Conf<Config>({
       type: 'string',
       default: path.resolve(__dirname, '..', '..', '..', 'library'),
     },
+    database: {
+      type: 'string',
+      default: path.resolve(__dirname, '..', '..', '..', 'library.db'),
+    },
   },
 })
 
 export default {
   library: expandTilde(config.get('library')),
+  database: expandTilde(config.get('database')),
 }
