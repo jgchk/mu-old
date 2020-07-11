@@ -2,8 +2,10 @@ import { Resolver, Arg, ID, Query, Mutation } from 'type-graphql'
 import { Repository } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 import Artist from '../entities/artist'
+import LocalCover from '../entities/cover-local'
 import RemoteCover from '../entities/cover-remote'
 import Release from '../entities/release'
+import LocalCoverInput from './types/cover-local-input'
 import RemoteCoverInput from './types/cover-remote-input'
 import ReleaseInput from './types/release-input'
 
@@ -15,7 +17,9 @@ class ReleaseResolver {
     @InjectRepository(Artist)
     private readonly artistRepository: Repository<Artist>,
     @InjectRepository(RemoteCover)
-    private readonly remoteCoverRepository: Repository<RemoteCover>
+    private readonly remoteCoverRepository: Repository<RemoteCover>,
+    @InjectRepository(LocalCover)
+    private readonly localCoverRepository: Repository<LocalCover>
   ) {}
 
   @Query(() => Release)
@@ -54,6 +58,21 @@ class ReleaseResolver {
 
     const covers = await release.remoteCovers
     covers.push(this.remoteCoverRepository.create({ ...coverInput }))
+
+    return this.releaseRepository.save(release)
+  }
+
+  @Mutation(() => Release)
+  async addLocalCover(
+    @Arg('cover') coverInput: LocalCoverInput
+  ): Promise<Release> {
+    const release = await this.releaseRepository.findOneOrFail(
+      coverInput.releaseId,
+      { relations: ['localCovers'] }
+    )
+
+    const covers = await release.localCovers
+    covers.push(this.localCoverRepository.create({ ...coverInput }))
 
     return this.releaseRepository.save(release)
   }

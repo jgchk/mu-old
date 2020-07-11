@@ -8,6 +8,7 @@ import {
 } from 'typeorm'
 import { Lazy } from '../utils'
 import Artist from './artist'
+import LocalCover from './cover-local'
 import RemoteCover from './cover-remote'
 import Track from './track'
 
@@ -36,6 +37,13 @@ class Release {
     cascade: true,
   })
   remoteCovers: Lazy<RemoteCover[]>
+
+  @Field(() => [LocalCover])
+  @OneToMany(() => LocalCover, (cover) => cover.release, {
+    lazy: true,
+    cascade: true,
+  })
+  localCovers: Lazy<LocalCover[]>
 }
 
 export default Release
