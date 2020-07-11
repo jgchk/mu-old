@@ -6,7 +6,7 @@ import Release from '../entities/release'
 import Track from '../entities/track'
 import RemoteTrackSource from '../entities/track-source-remote'
 import TrackInput from './types/track-input'
-import RemoteTrackSourceInput from './types/track-source-input/track-source-remote-input'
+import RemoteTrackSourceInput from './types/track-source-remote-input'
 
 @Resolver(Track)
 class TrackResolver {

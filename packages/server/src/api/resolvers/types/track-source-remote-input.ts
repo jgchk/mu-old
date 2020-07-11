@@ -1,5 +1,5 @@
 import { InputType, Field, ID } from 'type-graphql'
-import RemoteTrackSource from '../../../entities/track-source-remote'
+import RemoteTrackSource from '../../entities/track-source-remote'
 
 @InputType()
 class RemoteTrackSourceInput implements Partial<RemoteTrackSource> {
