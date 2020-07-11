@@ -6,6 +6,7 @@ import config from '../config'
 import Artist from './entities/artist'
 import Release from './entities/release'
 import Track from './entities/track'
+import RemoteTrackSource from './entities/track-source/track-source-remote'
 import ArtistResolver from './resolvers/artist-resolver'
 import ReleaseResolver from './resolvers/release-resolver'
 import TrackResolver from './resolvers/track-resolver'
@@ -17,7 +18,7 @@ const createApolloServer = async (): Promise<ApolloServer> => {
   await createConnection({
     type: 'sqlite',
     database: config.database,
-    entities: [Artist, Release, Track],
+    entities: [Artist, Release, Track, RemoteTrackSource],
     synchronize: true,
   })
 

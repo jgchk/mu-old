@@ -4,7 +4,9 @@ import { InjectRepository } from 'typeorm-typedi-extensions'
 import Artist from '../entities/artist'
 import Release from '../entities/release'
 import Track from '../entities/track'
+import RemoteTrackSource from '../entities/track-source/track-source-remote'
 import TrackInput from './types/track-input'
+import RemoteTrackSourceInput from './types/track-source-input/track-source-remote-input'
 
 @Resolver(Track)
 class TrackResolver {
@@ -14,7 +16,9 @@ class TrackResolver {
     @InjectRepository(Track)
     private readonly trackRepository: Repository<Track>,
     @InjectRepository(Artist)
-    private readonly artistRepository: Repository<Artist>
+    private readonly artistRepository: Repository<Artist>,
+    @InjectRepository(RemoteTrackSource)
+    private readonly remoteTrackSourceRepository: Repository<RemoteTrackSource>
   ) {}
 
   @Query(() => Track)
@@ -44,6 +48,22 @@ class TrackResolver {
       release,
       artists,
     })
+
+    return this.trackRepository.save(track)
+  }
+
+  @Mutation(() => Track)
+  async addRemoteTrackSource(
+    @Arg('source', () => RemoteTrackSourceInput)
+    sourceInput: RemoteTrackSourceInput
+  ): Promise<Track> {
+    const track = await this.trackRepository.findOneOrFail(
+      sourceInput.trackId,
+      { relations: ['remoteSources'] }
+    )
+
+    const sources = await track.remoteSources
+    sources.push(this.remoteTrackSourceRepository.create({ ...sourceInput }))
 
     return this.trackRepository.save(track)
   }

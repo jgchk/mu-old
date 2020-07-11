@@ -6,10 +6,12 @@ import {
   Column,
   Index,
   ManyToMany,
+  OneToMany,
 } from 'typeorm'
 import { Lazy } from '../utils'
 import Artist from './artist'
 import Release from './release'
+import RemoteTrackSource from './track-source/track-source-remote'
 
 @Entity()
 @Index(['release', 'num'], { unique: true })
@@ -34,6 +36,13 @@ class Track {
   @Field()
   @Column()
   title: string
+
+  @Field(() => [RemoteTrackSource])
+  @OneToMany(() => RemoteTrackSource, (source) => source.track, {
+    lazy: true,
+    cascade: true,
+  })
+  remoteSources: Lazy<RemoteTrackSource[]>
 }
 
 export default Track
