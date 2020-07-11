@@ -16,6 +16,10 @@ class RemoteTrackSource {
 
   @Field()
   @Column()
+  platform: string
+
+  @Field()
+  @Column()
   url: string
 
   @Field()

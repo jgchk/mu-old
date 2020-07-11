@@ -6,6 +6,9 @@ import TrackSourceInput from './track-source-input'
 class RemoteTrackSourceInput extends TrackSourceInput
   implements Partial<RemoteTrackSource> {
   @Field()
+  platform: string
+
+  @Field()
   url: string
 
   @Field()
