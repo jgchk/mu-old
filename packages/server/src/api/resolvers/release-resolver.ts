@@ -2,7 +2,9 @@ import { Resolver, Arg, ID, Query, Mutation } from 'type-graphql'
 import { Repository } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 import Artist from '../entities/artist'
+import RemoteCover from '../entities/cover-remote'
 import Release from '../entities/release'
+import RemoteCoverInput from './types/cover-remote-input'
 import ReleaseInput from './types/release-input'
 
 @Resolver(Release)
@@ -11,7 +13,9 @@ class ReleaseResolver {
     @InjectRepository(Release)
     private readonly releaseRepository: Repository<Release>,
     @InjectRepository(Artist)
-    private readonly artistRepository: Repository<Artist>
+    private readonly artistRepository: Repository<Artist>,
+    @InjectRepository(RemoteCover)
+    private readonly remoteCoverRepository: Repository<RemoteCover>
   ) {}
 
   @Query(() => Release)
@@ -35,6 +39,21 @@ class ReleaseResolver {
     )
 
     const release = this.releaseRepository.create({ ...releaseInput, artists })
+
+    return this.releaseRepository.save(release)
+  }
+
+  @Mutation(() => Release)
+  async addRemoteCover(
+    @Arg('cover') coverInput: RemoteCoverInput
+  ): Promise<Release> {
+    const release = await this.releaseRepository.findOneOrFail(
+      coverInput.releaseId,
+      { relations: ['remoteCovers'] }
+    )
+
+    const covers = await release.remoteCovers
+    covers.push(this.remoteCoverRepository.create({ ...coverInput }))
 
     return this.releaseRepository.save(release)
   }

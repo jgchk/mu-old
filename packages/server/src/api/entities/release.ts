@@ -8,6 +8,7 @@ import {
 } from 'typeorm'
 import { Lazy } from '../utils'
 import Artist from './artist'
+import RemoteCover from './cover-remote'
 import Track from './track'
 
 @Entity()
@@ -28,6 +29,13 @@ class Release {
   @Field(() => [Track])
   @OneToMany(() => Track, (track) => track.release, { lazy: true })
   tracks: Lazy<Track[]>
+
+  @Field(() => [RemoteCover])
+  @OneToMany(() => RemoteCover, (cover) => cover.release, {
+    lazy: true,
+    cascade: true,
+  })
+  remoteCovers: Lazy<RemoteCover[]>
 }
 
 export default Release

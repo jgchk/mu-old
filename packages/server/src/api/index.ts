@@ -4,6 +4,7 @@ import { Container } from 'typedi'
 import { useContainer, createConnection } from 'typeorm'
 import config from '../config'
 import Artist from './entities/artist'
+import RemoteCover from './entities/cover-remote'
 import Release from './entities/release'
 import Track from './entities/track'
 import RemoteTrackSource from './entities/track-source-remote'
@@ -18,7 +19,7 @@ const createApolloServer = async (): Promise<ApolloServer> => {
   await createConnection({
     type: 'sqlite',
     database: config.database,
-    entities: [Artist, Release, Track, RemoteTrackSource],
+    entities: [Artist, Release, Track, RemoteTrackSource, RemoteCover],
     synchronize: true,
   })
 
