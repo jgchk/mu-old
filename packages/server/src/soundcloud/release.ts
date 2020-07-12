@@ -1,6 +1,6 @@
 import { Release } from '@mu/api'
 import got from 'got'
-import getClientId from './client-id'
+import getClientId from '../remote/soundcloud/client-id'
 
 const baseUrl = 'https://api-v2.soundcloud.com'
 

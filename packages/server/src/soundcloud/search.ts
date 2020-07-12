@@ -1,6 +1,6 @@
 import { SearchResult } from '@mu/api'
 import got from 'got/dist/source'
-import getClientId from './client-id'
+import getClientId from '../remote/soundcloud/client-id'
 import { SearchPager } from './types'
 
 const baseUrl = 'https://api-v2.soundcloud.com/search'

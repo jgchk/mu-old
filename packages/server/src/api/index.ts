@@ -12,6 +12,7 @@ import LocalTrackSource from './entities/track-source-local'
 import RemoteTrackSource from './entities/track-source-remote'
 import ArtistResolver from './resolvers/artist-resolver'
 import ReleaseResolver from './resolvers/release-resolver'
+import SoundcloudReleaseResolver from './resolvers/release-resolver-soundcloud'
 import TrackResolver from './resolvers/track-resolver'
 
 const createApolloServer = async (): Promise<ApolloServer> => {
@@ -34,7 +35,12 @@ const createApolloServer = async (): Promise<ApolloServer> => {
   })
 
   const schema = await buildSchema({
-    resolvers: [ArtistResolver, ReleaseResolver, TrackResolver],
+    resolvers: [
+      ArtistResolver,
+      ReleaseResolver,
+      TrackResolver,
+      SoundcloudReleaseResolver,
+    ],
     container: Container,
   })
 
