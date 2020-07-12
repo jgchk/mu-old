@@ -8,7 +8,7 @@ import Navigation from './Navigation'
 
 const Router: FC = () => (
   <HashRouter>
-    <div css={{ display: 'flex', flexDirection: 'row' }}>
+    <div css={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
       <Navigation />
       <div css={{ flex: 1 }}>
         <Switch>

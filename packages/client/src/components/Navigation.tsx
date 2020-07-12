@@ -1,15 +1,18 @@
 import * as React from 'react'
 import { FC } from 'react'
-import { NavLink } from 'react-router-dom'
+import { FiHome, FiSearch, FiDisc } from 'react-icons/fi'
+import { NavBar } from '../kit/NavBar'
+import { NavLink } from '../kit/NavLink'
+import { NavLogo } from '../kit/NavLogo'
 
 const Navigation: FC = () => {
   return (
-    <div css={{ display: 'flex', flexDirection: 'column' }}>
-      <div>mu</div>
-      <NavLink to='/'>home</NavLink>
-      <NavLink to='/search'>search</NavLink>
-      <NavLink to='/library'>library</NavLink>
-    </div>
+    <NavBar>
+      <NavLogo>mu</NavLogo>
+      <NavLink to='/' label='home' icon={<FiHome />} />
+      <NavLink to='/search' label='search' icon={<FiSearch />} />
+      <NavLink to='/library' label='library' icon={<FiDisc />} />
+    </NavBar>
   )
 }
 

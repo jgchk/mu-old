@@ -2,9 +2,9 @@ import { Global, css } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import * as React from 'react'
 import { FC } from 'react'
-import theme, { Theme } from '../theme'
+import { theme, Theme } from './theme'
 
-const ThemeWrapper: FC = ({ children }) => (
+export const ThemeWrapper: FC = ({ children }) => (
   <ThemeProvider theme={theme}>
     <Global
       styles={{
@@ -25,6 +25,7 @@ const ThemeWrapper: FC = ({ children }) => (
       styles={(theme: Theme) => ({
         body: {
           fontFamily: theme.fonts.body,
+          color: theme.colors.black,
         },
       })}
     />
@@ -32,5 +33,3 @@ const ThemeWrapper: FC = ({ children }) => (
     {children}
   </ThemeProvider>
 )
-
-export default ThemeWrapper
