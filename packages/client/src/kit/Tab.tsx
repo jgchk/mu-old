@@ -1,16 +1,13 @@
 import * as React from 'react'
-import { FC, useContext } from 'react'
-import { TabsContext } from './Tabs'
+import { FC } from 'react'
+import useTabs from './useTabs'
 
 export interface TabProps {
   label: string
 }
 
 const Tab: FC<TabProps> = ({ label, children }) => {
-  const context = useContext(TabsContext)
-
-  if (!context) return null
-  const { setActiveTab } = context
+  const { setActiveTab } = useTabs()
 
   return (
     <div>
