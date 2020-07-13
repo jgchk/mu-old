@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/filename-case': 'off',
+    'unicorn/no-null': 'off', // we need to return null in JSX sometimes
     'import/order': ['error', {
       alphabetize: {
         order: 'asc',
