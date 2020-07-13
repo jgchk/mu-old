@@ -17,13 +17,17 @@ const Library: FC = () => {
 
   return (
     <Tabs defaultLabel='artists'>
-      <Tabs.Tab label='artists'>Artists</Tabs.Tab>
-      <Tabs.Tab label='releases'>Releases</Tabs.Tab>
-      <Tabs.Tab label='tracks'>Tracks</Tabs.Tab>
+      <Tabs.Bar>
+        <Tabs.Tab label='artists'>artists</Tabs.Tab>
+        <Tabs.Tab label='releases'>releases</Tabs.Tab>
+        <Tabs.Tab label='tracks'>tracks</Tabs.Tab>
+      </Tabs.Bar>
 
-      <Tabs.Panel label='artists'>Artists</Tabs.Panel>
-      <Tabs.Panel label='releases'>Releases</Tabs.Panel>
-      <Tabs.Panel label='tracks'>Tracks</Tabs.Panel>
+      <Tabs.Content>
+        <Tabs.Panel label='artists'>artists</Tabs.Panel>
+        <Tabs.Panel label='releases'>releases</Tabs.Panel>
+        <Tabs.Panel label='tracks'>tracks</Tabs.Panel>
+      </Tabs.Content>
     </Tabs>
   )
 }
