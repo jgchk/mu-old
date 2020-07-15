@@ -2,7 +2,7 @@ import * as React from 'react'
 import { FC } from 'react'
 import { Theme } from './theme'
 
-export const NavBar: FC = ({ children }) => (
+const NavBar: FC = ({ children }) => (
   <div
     css={(theme: Theme) => ({
       display: 'flex',
@@ -16,3 +16,5 @@ export const NavBar: FC = ({ children }) => (
     {children}
   </div>
 )
+
+export default NavBar

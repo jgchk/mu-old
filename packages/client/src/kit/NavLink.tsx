@@ -3,16 +3,17 @@ import { FC, ReactNode } from 'react'
 import { NavLink as RouterNavLink } from 'react-router-dom'
 import { Theme } from './theme'
 
-export const NavLink: FC<{
+const NavLink: FC<{
   to: string
   label: string
   icon?: ReactNode
-}> = ({ to, label, icon }) => (
+  fontSize?: number
+}> = ({ to, label, icon, fontSize = 3 }) => (
   <RouterNavLink
     to={to}
     css={(theme: Theme) => ({
       padding: theme.space[1],
-      fontSize: theme.fontSizes[3],
+      fontSize: theme.fontSizes[fontSize],
       textDecoration: 'none',
       color: theme.colors.gray[9],
       '&:hover': { color: theme.colors.gray[8] },
@@ -31,3 +32,5 @@ export const NavLink: FC<{
     {label}
   </RouterNavLink>
 )
+
+export default NavLink

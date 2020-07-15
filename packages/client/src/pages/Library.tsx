@@ -1,8 +1,12 @@
 import * as React from 'react'
 import { FC, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom'
+import Artists from '../components/Artists'
 import Releases from '../components/Releases'
-import Tabs from '../kit/Tabs'
+import Tracks from '../components/Tracks'
+import NavLink from '../kit/NavLink'
+import TabBar from '../kit/TabBar'
 import { RootState } from '../modules'
 import { fetchLibrary } from '../modules/library/actions'
 
@@ -16,22 +20,26 @@ const Library: FC = () => {
     if (didInvalidate) dispatch(fetchLibrary())
   }, [dispatch, didInvalidate])
 
-  return (
-    <Tabs defaultLabel='artists'>
-      <Tabs.Bar>
-        <Tabs.Tab label='artists'>artists</Tabs.Tab>
-        <Tabs.Tab label='releases'>releases</Tabs.Tab>
-        <Tabs.Tab label='tracks'>tracks</Tabs.Tab>
-      </Tabs.Bar>
+  const { path, url } = useRouteMatch()
+  const makeUrl = (endpoint: string) => `${url}/${endpoint}`
+  const makePath = (endpoint: string) => `${path}/${endpoint}`
 
-      <Tabs.Content>
-        <Tabs.Panel label='artists'>artists</Tabs.Panel>
-        <Tabs.Panel label='releases'>
-          <Releases />
-        </Tabs.Panel>
-        <Tabs.Panel label='tracks'>tracks</Tabs.Panel>
-      </Tabs.Content>
-    </Tabs>
+  return (
+    <div>
+      <TabBar>
+        <NavLink to={makeUrl('artists')} label='artists' fontSize={2} />
+        <NavLink to={makeUrl('releases')} label='releases' fontSize={2} />
+        <NavLink to={makeUrl('tracks')} label='tracks' fontSize={2} />
+      </TabBar>
+      <Switch>
+        <Route exact path={path}>
+          <Redirect to={makePath('artists')} />
+        </Route>
+        <Route path={makePath('artists')} component={Artists} />
+        <Route path={makePath('releases')} component={Releases} />
+        <Route path={makePath('tracks')} component={Tracks} />
+      </Switch>
+    </div>
   )
 }
 

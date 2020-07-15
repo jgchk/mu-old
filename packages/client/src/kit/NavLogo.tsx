@@ -2,7 +2,7 @@ import * as React from 'react'
 import { FC } from 'react'
 import { Theme } from './theme'
 
-export const NavLogo: FC = ({ children }) => (
+const NavLogo: FC = ({ children }) => (
   <div
     css={(theme: Theme) => ({
       fontFamily: theme.fonts.body,
@@ -14,3 +14,5 @@ export const NavLogo: FC = ({ children }) => (
     {children}
   </div>
 )
+
+export default NavLogo
