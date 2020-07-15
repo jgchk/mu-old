@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { FC } from 'react'
 import { useSelector, shallowEqual } from 'react-redux'
+import Card from '../kit/Card'
 import CommaList from '../kit/CommaList'
 import Link from '../kit/Link'
 import { Theme } from '../kit/theme'
@@ -17,22 +18,7 @@ const Release: FC<{ id: string }> = ({ id }) => {
 
   return (
     <Link to={`/release/${id}`}>
-      <div
-        css={(theme: Theme) => ({
-          width,
-          background: theme.colors.gray[0],
-          border: `${theme.borderWidths[4]}px solid ${theme.colors.gray[0]}`,
-          borderRadius: theme.borderWidths[3],
-          margin: theme.space[2],
-          boxSizing: 'content-box',
-          textDecoration: 'none',
-          transition: 'boxShadow 1s',
-          '&:hover': {
-            background: theme.colors.gray[1],
-            borderColor: theme.colors.gray[1],
-          },
-        })}
-      >
+      <Card>
         <img src={release.remoteCovers[0]} width={width} />
         <div
           css={(theme: Theme) => [
@@ -59,7 +45,7 @@ const Release: FC<{ id: string }> = ({ id }) => {
             ))}
           </CommaList>
         </div>
-      </div>
+      </Card>
     </Link>
   )
 }
