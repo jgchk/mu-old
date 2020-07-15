@@ -6,7 +6,7 @@ interface SoundcloudRelease {
   title: string
   artist: string
   tracks: SoundcloudTrack[]
-  cover: string
+  cover?: string
 }
 
 interface SoundcloudTrack {
@@ -42,7 +42,7 @@ export default async function resolve(url: string): Promise<SoundcloudRelease> {
   const partialRelease = {
     title: result.title,
     artist: result.user.username,
-    cover: result.artwork_url,
+    cover: result.artwork_url?.replace('large', 't500x500'),
   }
 
   switch (result.kind) {

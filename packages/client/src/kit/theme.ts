@@ -8,7 +8,7 @@ export interface Theme {
     display: string
     body: string
   }
-  borderWidths: [number, number, number]
+  borderWidths: [number, number, number, number, number]
 }
 
 export const theme: Theme = {
@@ -19,5 +19,5 @@ export const theme: Theme = {
     display: "'Montserrat', sans-serif",
     body: "'Roboto', sans-serif",
   },
-  borderWidths: [1, 2, 4],
+  borderWidths: [1, 2, 4, 8, 16],
 }

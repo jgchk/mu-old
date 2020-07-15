@@ -11,7 +11,7 @@ interface Library {
 }
 
 interface Identifiable {
-  id: number
+  id: string
 }
 
 interface Artist extends Identifiable {

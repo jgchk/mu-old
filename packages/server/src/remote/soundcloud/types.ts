@@ -73,7 +73,7 @@ export interface Playlist {
   title: string
   purchase_title: null
   managed_by_feeds: boolean
-  artwork_url: null
+  artwork_url: string | null
   is_album: boolean
   user: User
   published_at: Date

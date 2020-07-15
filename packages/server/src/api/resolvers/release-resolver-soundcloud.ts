@@ -45,9 +45,11 @@ class SoundcloudReleaseResolver {
       })
     )
 
-    await this.remoteCoverRepository.save(
-      this.remoteCoverRepository.create({ release, url: scRelease.cover })
-    )
+    if (scRelease.cover) {
+      await this.remoteCoverRepository.save(
+        this.remoteCoverRepository.create({ release, url: scRelease.cover })
+      )
+    }
 
     await Promise.all(
       scRelease.tracks.map(async (scTrack, i) => {
@@ -85,7 +87,7 @@ class SoundcloudReleaseResolver {
       })
     )
 
-    return this.releaseRepository.findOne(release.id)
+    return this.releaseRepository.findOneOrFail(release.id)
   }
 }
 

@@ -7,24 +7,24 @@ import {
 } from './actions'
 
 interface Identifiable {
-  id: number
+  id: string
 }
 
 const ids = (elements: Identifiable[]) => elements.map((element) => element.id)
 
 const emptyTable = {}
-type Table<T extends Identifiable> = { [id: number]: T }
+type Table<T extends Identifiable> = { [id: string]: T }
 
 interface Artist extends Identifiable {
   name: string
-  releases: number[]
-  tracks: number[]
+  releases: string[]
+  tracks: string[]
 }
 
 interface Release extends Identifiable {
   title: string
-  tracks: number[]
-  artists: number[]
+  tracks: string[]
+  artists: string[]
   remoteCovers: RemoteCover[]
   localCovers: LocalCover[]
 }
@@ -34,8 +34,8 @@ type RemoteCover = string
 type LocalCover = string
 
 interface Track extends Identifiable {
-  release: number
-  artists: number[]
+  release: string
+  artists: string[]
   num: number
   title: string
   remoteSources: RemoteSource[]
