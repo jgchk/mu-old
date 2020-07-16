@@ -4,8 +4,6 @@ import { useSelector, shallowEqual } from 'react-redux'
 import Card from '../kit/Card'
 import CommaList from '../kit/CommaList'
 import Link from '../kit/Link'
-import { Theme } from '../kit/theme'
-import truncate from '../kit/truncate'
 import { RootState } from '../modules'
 
 const width = 200
@@ -20,19 +18,8 @@ const Release: FC<{ id: string }> = ({ id }) => {
     <Link to={`/release/${id}`}>
       <Card>
         <img src={release.remoteCovers[0]} width={width} />
-        <div
-          css={(theme: Theme) => [
-            truncate,
-            { fontWeight: 'bold', marginTop: theme.space[1] },
-          ]}
-        >
-          {release.title}
-        </div>
-        <div
-          css={(theme: Theme) => ({
-            marginTop: theme.space[0],
-          })}
-        >
+        <Card.Title>{release.title}</Card.Title>
+        <Card.Subtitle>
           <CommaList>
             {artists.map((artist) => (
               <CommaList.Item key={artist.id}>
@@ -44,7 +31,7 @@ const Release: FC<{ id: string }> = ({ id }) => {
               </CommaList.Item>
             ))}
           </CommaList>
-        </div>
+        </Card.Subtitle>
       </Card>
     </Link>
   )

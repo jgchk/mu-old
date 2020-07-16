@@ -1,8 +1,18 @@
 import * as React from 'react'
 import { FC } from 'react'
+import CardSubtitle from './CardSubtitle'
+import CardTitle from './CardTitle'
 import { Theme } from './theme'
 
-const Card: FC<{ width?: number }> = ({ children, width }) => (
+interface CardComposition {
+  Title: FC
+  Subtitle: FC
+}
+
+const Card: FC<{ width?: number }> & CardComposition = ({
+  children,
+  width,
+}) => (
   <div
     css={(theme: Theme) => ({
       width,
@@ -21,5 +31,8 @@ const Card: FC<{ width?: number }> = ({ children, width }) => (
     {children}
   </div>
 )
+
+Card.Title = CardTitle
+Card.Subtitle = CardSubtitle
 
 export default Card
