@@ -1,8 +1,10 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { gql } from 'apollo-boost'
 import apollo from '../../apollo'
+import { LibraryRoute } from '../../pages/Library'
 import { getErrorMessage } from '../../utils/error'
 import { withPayloadType } from '../../utils/redux'
+import { ViewType } from './reducers'
 
 interface Library {
   artists: Artist[]
@@ -127,4 +129,9 @@ export const fetchLibrary = createAsyncThunk(
       dispatch(failureLibrary(getErrorMessage(error)))
     }
   }
+)
+
+export const setViewType = createAction(
+  'mu/library/SET_VIEW_TYPE',
+  withPayloadType<{ route: LibraryRoute; viewType: ViewType }>()
 )

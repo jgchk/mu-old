@@ -1,9 +1,11 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit'
+import { LibraryRoute } from '../../pages/Library'
 import {
   requestLibrary,
   receiveLibrary,
   failureLibrary,
   invalidateLibrary,
+  setViewType,
 } from './actions'
 
 interface Identifiable {
@@ -124,6 +126,20 @@ const tracksReducer = createReducer<Table<Track>>(emptyTable, (builder) =>
   })
 )
 
+export type ViewType = 'list' | 'grid'
+
+const viewTypesReducer = createReducer<Record<LibraryRoute, ViewType>>(
+  {
+    artists: 'grid',
+    releases: 'grid',
+    tracks: 'list',
+  },
+  (builder) =>
+    builder.addCase(setViewType, (state, { payload: { route, viewType } }) => {
+      state[route] = viewType
+    })
+)
+
 const reducer = combineReducers({
   isFetching: isFetchingReducer,
   lastUpdated: lastUpdatedReducer,
@@ -131,6 +147,7 @@ const reducer = combineReducers({
   artists: artistsReducer,
   releases: releasesReducer,
   tracks: tracksReducer,
+  viewTypes: viewTypesReducer,
 })
 
 export default reducer
