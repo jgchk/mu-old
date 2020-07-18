@@ -30,12 +30,14 @@ const ListGridSelector: FC = () => {
       <Button
         shade={viewType === 'list' ? 9 : 7}
         onClick={() => onClick('list')}
+        title='list'
       >
         <FiList display='block' />
       </Button>
       <Button
         shade={viewType === 'grid' ? 9 : 7}
         onClick={() => onClick('grid')}
+        title='grid'
       >
         <FiGrid display='block' />
       </Button>

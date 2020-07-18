@@ -15,9 +15,9 @@ const ArtistList: FC<{ ids: string[] }> = ({ ids }) => {
       {artists.map((artist) => (
         <CommaList.Item key={artist.id}>
           <Link to={`/artist/${artist.id}`}>
-            <div css={{ '&:hover': { textDecoration: 'underline' } }}>
+            <span css={{ '&:hover': { textDecoration: 'underline' } }}>
               {artist.name}
-            </div>
+            </span>
           </Link>
         </CommaList.Item>
       ))}
