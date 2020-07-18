@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { FC } from 'react'
+import CardImage, { CardImageProps } from './CardImage'
 import CardSubtitle from './CardSubtitle'
 import CardTitle, { CardTitleProps } from './CardTitle'
 import { Theme } from './theme'
@@ -7,6 +8,7 @@ import { Theme } from './theme'
 interface CardComposition {
   Title: FC<CardTitleProps>
   Subtitle: FC
+  Image: FC<CardImageProps>
 }
 
 const Card: FC<{ width?: number }> & CardComposition = ({
@@ -34,5 +36,6 @@ const Card: FC<{ width?: number }> & CardComposition = ({
 
 Card.Title = CardTitle
 Card.Subtitle = CardSubtitle
+Card.Image = CardImage
 
 export default Card

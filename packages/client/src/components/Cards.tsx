@@ -23,11 +23,9 @@ export const GridCard: FC<CardProps> = ({
 }) => (
   <Link to={href}>
     <Card width={width}>
-      <img
-        src={imgSrc}
-        width={width}
-        css={(theme: Theme) => ({ marginBottom: theme.space[1] })}
-      />
+      <div css={(theme: Theme) => ({ marginBottom: theme.space[2] })}>
+        <Card.Image src={imgSrc} width={width} />
+      </div>
       <Card.Title>{use(title)}</Card.Title>
       {subtitle && <Card.Subtitle>{use(subtitle)}</Card.Subtitle>}
     </Card>
@@ -45,14 +43,7 @@ export const ListCard: FC<CardProps> = ({
     <Card width={width}>
       <div css={{ display: 'flex', alignItems: 'center' }}>
         <div css={(theme: Theme) => ({ flex: 1, marginRight: theme.space[3] })}>
-          <img
-            src={imgSrc}
-            css={(theme: Theme) => ({
-              maxWidth: '100%',
-              display: 'block',
-              borderRadius: theme.borderWidths[2],
-            })}
-          />
+          <Card.Image src={imgSrc} />
         </div>
         <div css={{ flex: 2 }}>
           <Card.Title>{use(title)}</Card.Title>
