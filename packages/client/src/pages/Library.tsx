@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, ReactNode } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom'
 import Artists from '../components/Artists'
@@ -13,20 +13,10 @@ import { fetchLibrary } from '../modules/library/actions'
 
 export type LibraryRoute = 'artists' | 'releases' | 'tracks'
 
-const Library: FC = () => {
-  const didInvalidate = useSelector(
-    (state: RootState) => state.library.didInvalidate
-  )
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    if (didInvalidate) dispatch(fetchLibrary())
-  }, [dispatch, didInvalidate])
-
-  const { path, url } = useRouteMatch()
-  const makeUrl = (endpoint: string) => `${url}/${endpoint}`
-  const makePath = (endpoint: string) => `${path}/${endpoint}`
-
+const LibraryPage: FC<{
+  page: ReactNode
+  makeUrl: (endpoint: string) => string
+}> = ({ page, makeUrl }) => {
   return (
     <div>
       <TabBar>
@@ -38,13 +28,40 @@ const Library: FC = () => {
           <ListGridSelector />
         </div>
       </TabBar>
+      {page}
+    </div>
+  )
+}
+
+const Library: FC = () => {
+  const didInvalidate = useSelector(
+    (state: RootState) => state.library.didInvalidate
+  )
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (didInvalidate) dispatch(fetchLibrary())
+  }, [dispatch, didInvalidate])
+
+  const { path, url } = useRouteMatch()
+  const makePath = (endpoint: string) => `${path}/${endpoint}`
+  const makeUrl = (endpoint: string) => `${url}/${endpoint}`
+
+  return (
+    <div>
       <Switch>
         <Route exact path={path}>
           <Redirect to={makePath('artists')} />
         </Route>
-        <Route path={makePath('artists')} component={Artists} />
-        <Route path={makePath('releases')} component={Releases} />
-        <Route path={makePath('tracks')} component={Tracks} />
+        <Route path={makePath('artists')}>
+          <LibraryPage page={<Artists />} makeUrl={makeUrl} />
+        </Route>
+        <Route path={makePath('releases')}>
+          <LibraryPage page={<Releases />} makeUrl={makeUrl} />
+        </Route>
+        <Route path={makePath('tracks')}>
+          <LibraryPage page={<Tracks />} makeUrl={makeUrl} />
+        </Route>
       </Switch>
     </div>
   )

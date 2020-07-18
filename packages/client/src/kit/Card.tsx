@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { FC } from 'react'
 import CardSubtitle from './CardSubtitle'
-import CardTitle from './CardTitle'
+import CardTitle, { CardTitleProps } from './CardTitle'
 import { Theme } from './theme'
 
 interface CardComposition {
-  Title: FC
+  Title: FC<CardTitleProps>
   Subtitle: FC
 }
 

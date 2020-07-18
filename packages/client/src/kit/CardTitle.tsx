@@ -3,11 +3,16 @@ import { FC } from 'react'
 import { Theme } from './theme'
 import truncate from './truncate'
 
-const CardTitle: FC = ({ children }) => (
+export interface CardTitleProps {
+  center?: boolean
+}
+
+const CardTitle: FC<CardTitleProps> = ({ children, center }) => (
   <div
     css={(theme: Theme) => [
       truncate,
-      { fontWeight: 'bold', marginTop: theme.space[1] },
+      { fontWeight: theme.fontWeights[2] },
+      center && { textAlign: 'center' },
     ]}
   >
     {children}

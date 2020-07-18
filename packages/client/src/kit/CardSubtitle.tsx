@@ -6,6 +6,7 @@ const CardSubtitle: FC = ({ children }) => (
   <div
     css={(theme: Theme) => ({
       marginTop: theme.space[0],
+      fontSize: theme.fontSizes[1],
     })}
   >
     {children}
