@@ -59,8 +59,8 @@ const isFetchingReducer = createReducer(false, (builder) =>
     .addCase(failureLibrary, () => false)
 )
 
-const lastUpdatedReducer = createReducer<Date>(new Date(), (builder) =>
-  builder.addCase(receiveLibrary, () => new Date())
+const lastUpdatedReducer = createReducer<number>(Date.now(), (builder) =>
+  builder.addCase(receiveLibrary, () => Date.now())
 )
 
 const didInvalidateReducer = createReducer(true, (builder) =>
