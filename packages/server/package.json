@@ -28,7 +28,7 @@
     "music-metadata": "^6.4.0",
     "reflect-metadata": "^0.1.13",
     "runtypes": "^4.3.0",
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.0.3",
     "type-graphql": "^1.0.0-rc.3",
     "typedi": "^0.8.0",
     "typeorm": "^0.2.25",
