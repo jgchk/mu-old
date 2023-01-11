@@ -15,7 +15,7 @@
     "@mu/api": "*",
     "apollo-server-koa": "^2.15.1",
     "bluebird": "^3.7.2",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "conf": "^6.2.4",
     "dotenv": "^8.2.0",
     "expand-tilde": "^2.0.2",
